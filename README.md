@@ -1,12 +1,6 @@
 ﻿# bluejay
 Sistema Front-End Cloud para administración de RH y Nominas.
 
-Archivos de administración
+Herramientas:
 
-Ultimos cambios:
-- 
-
-
-Versión de Framework .NET
-- 4.5
-
+Framework .NET v4.5
