@@ -1,0 +1,282 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Bluejay.SiteMaster" %>
+
+<%@ Register Assembly="DevExpress.Web.v16.1, Version=16.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8" />
+	<title>.::Bluejay::.</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>    
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="apple-touch-icon" sizes="76x76" href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/img/apple-icon.png") %>">
+	<link rel="icon" type="image/png" sizes="96x96" href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/img/favicon.png") %>">
+    <!-- Bootstrap core CSS     -->
+    <link href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/css/bootstrap.min.css") %>" rel="stylesheet" />
+    <!--  Paper Dashboard core CSS    -->
+    <link href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/css/paper-dashboard.css") %>" rel="stylesheet"/>
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/css/themify-icons.css") %>" rel="stylesheet">
+
+    <style type="text/css">
+        img[class^="dx"] { max-width: none !important; }
+        .main-panel { overflow: visible !important; }
+    </style>
+
+    <link href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/css/themify-icons.css") %>" rel="stylesheet">
+    <!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery-3.1.1.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery-ui.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/perfect-scrollbar.min.js") %>" type="text/javascript"></script>
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/bootstrap.min.js") %>" type="text/javascript"></script>
+    <!--  Forms Validations Plugin -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery.validate.min.js") %>"></script>
+    <!-- Promise Library for SweetAlert2 working on IE -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/es6-promise-auto.min.js") %>"></script>
+    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/moment.min.js") %>"></script>
+    <!--  Date Time Picker Plugin is included in this js file -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/bootstrap-datetimepicker.js") %>"></script>
+    <!--  Select Picker Plugin -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/bootstrap-selectpicker.js") %>"></script>
+    <!--  Switch and Tags Input Plugins -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/bootstrap-switch-tags.js") %>"></script>
+    <!-- Circle Percentage-chart -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery.easypiechart.min.js") %>"></script>
+    <!--  Charts Plugin -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/chartist.min.js") %>"></script>
+    <!--  Notifications Plugin    -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/bootstrap-notify.js") %>"></script>
+    <!-- Sweet Alert 2 plugin -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/sweetalert2.js") %>"></script>
+    <!-- Vector Map plugin -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery-jvectormap.js") %>"></script>
+    <!-- Wizard Plugin    -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery.bootstrap.wizard.min.js") %>"></script>
+    <!--  Bootstrap Table Plugin    -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/bootstrap-table.js") %>"></script>
+    <!--  Plugin for DataTables.net  -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/jquery.datatables.js") %>"></script>
+    <!--  Full Calendar Plugin    -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/fullcalendar.min.js") %>"></script>
+    <!-- Paper Dashboard PRO Core javascript and methods for Demo purpose -->
+    <script src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/js/paper-dashboard.js") %>"></script>
+    <!-- Scripts -->
+    <script type="text/javascript">
+        // Lectura de DOM.
+        $(function (e) {
+            // Recorre casa elemento disponible.
+            $('.sidebar-normal').each(function () {
+                // Valida la similaridad del nombre de la etiqueta y el titulo de la pág.
+                if ($(this).html() == $('#titlePage').text()) { // document.title
+                    // Establece el color.
+                    $(this).css('color', 'red');
+                    // Obtiene el id del elemento contenedor.
+                    var id = $(this).parents().parent('div.collapse').attr('id');
+                    // Dispara un clic.
+                    $('a[href="#' + id + '"]').trigger('click').css('color','green');
+                }
+            });
+            // Formatea la tabla de datos.
+            /*$('.GridTable').prepend($('<thead></thead>').append($(this).find('tr:first'))).DataTable({
+                'pagingType': 'full_numbers',
+                'lengthMenu': [[10, 25, 50, -1], [10, 25, 50, 'Todo']],
+                responsive: true,
+                language: {
+                    search: '_INPUT_',
+                    searchPlaceholder: "Buscar",
+                }
+            });*/
+        });
+
+        function showNotification(from, align, Type, Message, Icon) {
+            color = Math.floor((Math.random() * 4) + 1);
+
+            $.notify({
+                icon: Icon,
+                message: Message
+
+            }, {
+                type: Type,
+                timer: 1000,
+                placement: {
+                    from: from,
+                    align: align
+                }
+            });
+        }
+    </script>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <div class="wrapper">
+	    <div class="sidebar" data-background-color="brown" data-active-color="danger">
+	    <!--Tip 1: you can change the color of the sidebar's background using: data-background-color="white | brown"
+		    Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"-->
+		    <div class="logo">
+			    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("") %>" class="simple-text logo-mini">
+                    <asp:Image runat="server" ImageUrl="~/Content/Images/centraba_logo_2.png" Width="30px" Height="30px" />
+			    </a>
+			    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("") %>" class="simple-text logo-normal">
+                    CENTRABA
+			    </a>
+		    </div>
+		    <div class="sidebar-wrapper">
+			    <div class="user">
+                    <asp:LoginView ID="LoginView" runat="server">
+                        <LoggedInTemplate>
+						    <div class="photo">
+							    <img src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/img/faces/face-0.jpg") %>" />
+						    </div>
+						    <div class="info">
+							    <a data-toggle="collapse" href="#user" class="collapsed">
+								    <span>
+									    <%: Context.User.Identity.GetUserName() %>
+								    </span>
+							    </a>
+							    <div class="clearfix"></div>
+						    </div>
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+			    </div>
+			    <ul class="nav">
+                    <li>
+					    <a data-toggle="collapse" href="#operacion">
+						    <i class="ti-panel"></i>
+						    <p>Operación
+							    <b class="caret"></b>
+						    </p>
+					    </a>
+					    <div class="collapse" id="operacion">
+						    <ul class="nav">
+							    <li>
+								    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/EmployeeList.aspx") %>">
+									    <span class="sidebar-mini">T</span>
+									    <span class="sidebar-normal">Trabajadores</span>
+								    </a>
+							    </li>
+							    <li>
+								    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/IncidenciasByConcepto.aspx") %>">
+									    <span class="sidebar-mini">IC</span>
+									    <span class="sidebar-normal">Incidencias por Concepto</span>
+								    </a>
+							    </li>
+                                <li>
+								    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/IncidenciasByEmployee.aspx") %>">
+									    <span class="sidebar-mini">IT</span>
+									    <span class="sidebar-normal">Incidencias por Trabajador</span>
+								    </a>
+							    </li>
+                                <li>
+								    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/RegistroAusentismo.aspx") %>">
+									    <span class="sidebar-mini">RA</span>
+									    <span class="sidebar-normal">Registro Ausentismos</span>
+								    </a>
+							    </li>
+                                <li>
+								    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/RegistroIncapacidad.aspx") %>">
+									    <span class="sidebar-mini">RI</span>
+									    <span class="sidebar-normal">Registro Incapacidades</span>
+								    </a>
+							    </li>
+						    </ul>
+					    </div>
+				    </li>
+
+                    <li id="adminMenu" runat="server">
+					    <a data-toggle="collapse" href="#administracion">
+						    <i class="ti-ruler-pencil"></i>
+						    <p>Administración
+							    <b class="caret"></b>
+						    </p>
+					    </a>
+					    <div class="collapse" id="administracion">
+						    <ul class="nav">						
+							    <li>
+								    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/Admin/UserList.aspx") %>">
+									    <span class="sidebar-mini">U</span>
+									    <span class="sidebar-normal">Usuarios</span>
+								    </a>
+							    </li>
+						    </ul>
+					    </div>
+				    </li>                    
+                    
+			    </ul>
+		    </div>
+	    </div>
+
+	    <div class="main-panel">
+		    <nav class="navbar navbar-default">
+			    <div class="container-fluid">
+				    <div class="navbar-minimize">
+					    <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
+				    </div>
+				    <div class="navbar-header">
+					    <button type="button" class="navbar-toggle">
+						    <span class="sr-only">Toggle navigation</span>
+						    <span class="icon-bar bar1"></span>
+						    <span class="icon-bar bar2"></span>
+						    <span class="icon-bar bar3"></span>
+					    </button>
+                        <a class="navbar-brand"><asp:Label ID="titlePage" runat="server" Text=""></asp:Label></a>
+				    </div>
+                    
+				   <div class="collapse navbar-collapse">
+					    <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Account/Logout.aspx") %>">Cerrar Sesión</a>
+						    </li>
+					    </ul>
+				    </div>
+			    </div>
+		    </nav>
+
+		    <div class="content">
+			    <div class="container-fluid">
+				    <div class="row">
+					    <div class="col-md-12">
+						    <div class="card">
+							    <div class="card-content">
+								    <div class="toolbar">
+									    <!--Here you can write extra buttons/actions for the toolbar-->
+								    </div>
+                                    <form id="form1" runat="server">
+									    <!-- begin - your content here -->
+									    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+									    </asp:ContentPlaceHolder>
+                                        <!--end - your content here -->
+                                    </form>
+							    </div>
+						    </div><!--  end card  -->
+					    </div> <!-- end col-md-12 -->
+				    </div> <!-- end row -->
+			    </div>
+		    </div>
+
+		    <footer class="footer">
+			    <div class="container-fluid">
+				    <nav class="pull-left">
+					    <ul>
+						    <li>
+							    <a href="http://www.datarama.com.mx">
+								    <asp:Image runat="server" ImageUrl="~/Content/Images/centraba_logo_1.png" Width="145px" Height="30px" />
+							    </a>
+						    </li>								
+					    </ul>
+				    </nav>
+				    <div class="copyright pull-right">&copy; <%: DateTime.Now.Year %>, powered by <a href="http://www.datarama.com.mx">LUNATech</a>
+				    </div>
+			    </div>
+		    </footer>
+	    </div>
+    </div>
+</body>
+</html>

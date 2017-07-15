@@ -1,0 +1,189 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Root.master" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Bluejay.Main" %>
+
+<%@ Register Assembly="DevExpress.Web.v16.1, Version=16.1.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="RootHeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="RootContent" runat="server">
+    <form id="form1" runat="server">
+        <div class="wrapper">
+	        <div class="sidebar" data-background-color="brown" data-active-color="danger">
+	        <!--Tip 1: you can change the color of the sidebar's background using: data-background-color="white | brown"
+		        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"-->
+		        <div class="logo">
+			        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("") %>" class="simple-text logo-mini">
+                        <asp:Image runat="server" ImageUrl="~/Content/Images/centraba_logo_2.png" Width="30px" Height="30px" />
+			        </a>
+			        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("") %>" class="simple-text logo-normal">
+                        CENTRABA
+			        </a>
+		        </div>
+		        <div class="sidebar-wrapper">                    
+			        <div class="user">
+                        <asp:LoginView ID="LoginView" runat="server">
+                            <LoggedInTemplate>
+						        <div class="photo">
+							        <img src="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("assets/img/faces/face-0.jpg") %>" />
+						        </div>
+						        <div class="info">
+							        <a data-toggle="collapse" href="#user" class="collapsed">
+								        <span>
+									        <%: Context.User.Identity.GetUserName() %>
+								        </span>
+							        </a>
+							        <div class="clearfix"></div>
+						        </div>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+			        </div>
+			        <ul class="nav">
+                        <dx:ASPxMenu ID="ASPxMenu1" runat="server">
+                            <Items>
+                                <dx:MenuItem Text="Operacion">
+                                    <Items>
+                                        <dx:MenuItem Text="Trabajadores 1"></dx:MenuItem>
+                                        <dx:MenuItem Text="Trabajadores 2"></dx:MenuItem>
+                                        <dx:MenuItem Text="Trabajadores 3"></dx:MenuItem>
+                                    </Items>
+                                </dx:MenuItem>
+                                <dx:MenuItem Text="Administracion">
+                                    <Items>
+                                        <dx:MenuItem Text="Usuarios"></dx:MenuItem>
+                                    </Items>
+                                </dx:MenuItem>
+                            </Items>
+                        </dx:ASPxMenu>
+                                                
+                        <li>
+					        <a data-toggle="collapse" href="#operacion">
+						        <i class="ti-panel"></i>
+						        <p>Operación
+							        <b class="caret"></b>
+						        </p>
+					        </a>
+					        <div class="collapse" id="operacion">
+						        <ul class="nav">
+							        <li>
+								        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/EmployeeList.aspx") %>">
+									        <span class="sidebar-mini">T</span>
+									        <span class="sidebar-normal">Trabajadores</span>
+								        </a>
+							        </li>
+							        <li>
+								        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/IncidenciasByConcepto.aspx") %>">
+									        <span class="sidebar-mini">IC</span>
+									        <span class="sidebar-normal">Incidencias por Concepto</span>
+								        </a>
+							        </li>
+                                    <li>
+								        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/IncidenciasByEmployee.aspx") %>">
+									        <span class="sidebar-mini">IT</span>
+									        <span class="sidebar-normal">Incidencias por Trabajador</span>
+								        </a>
+							        </li>
+                                    <li>
+								        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/RegistroAusentismo.aspx") %>">
+									        <span class="sidebar-mini">RA</span>
+									        <span class="sidebar-normal">Registro Ausentismos</span>
+								        </a>
+							        </li>
+                                    <li>
+								        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/RegistroIncapacidad.aspx") %>">
+									        <span class="sidebar-mini">RI</span>
+									        <span class="sidebar-normal">Registro Incapacidades</span>
+								        </a>
+							        </li>
+						        </ul>
+					        </div>
+				        </li>
+
+                        <li id="adminMenu" runat="server">
+					        <a data-toggle="collapse" href="#administracion">
+						        <i class="ti-ruler-pencil"></i>
+						        <p>Administración
+							        <b class="caret"></b>
+						        </p>
+					        </a>
+					        <div class="collapse" id="administracion">
+						        <ul class="nav">						
+							        <li>
+								        <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Web/Admin/UserList.aspx") %>">
+									        <span class="sidebar-mini">U</span>
+									        <span class="sidebar-normal">Usuarios</span>
+								        </a>
+							        </li>
+						        </ul>
+					        </div>
+				        </li>                    
+                    
+			        </ul>
+		        </div>
+	        </div>
+
+	        <div class="main-panel">
+		        <nav class="navbar navbar-default">
+			        <div class="container-fluid">
+				        <div class="navbar-minimize">
+					        <button id="minimizeSidebar" class="btn btn-fill btn-icon"><i class="ti-more-alt"></i></button>
+				        </div>
+				        <div class="navbar-header">
+					        <button type="button" class="navbar-toggle">
+						        <span class="sr-only">Toggle navigation</span>
+						        <span class="icon-bar bar1"></span>
+						        <span class="icon-bar bar2"></span>
+						        <span class="icon-bar bar3"></span>
+					        </button>
+                            <a class="navbar-brand"><asp:Label ID="titlePage" runat="server" Text=""></asp:Label></a>
+				        </div>
+                    
+				       <div class="collapse navbar-collapse">
+					        <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    <a href="<%: Bluejay.Core.Utilities.GeneralConfig.ServerPath("Account/Logout.aspx") %>">Cerrar Sesión</a>
+						        </li>
+					        </ul>
+				        </div>
+			        </div>
+		        </nav>
+
+		        <div class="content">
+			        <div class="container-fluid">
+				        <div class="row">
+					        <div class="col-md-12">
+						        <div class="card">
+							        <div class="card-content">
+								        <div class="toolbar">
+									        <!--Here you can write extra buttons/actions for the toolbar-->
+								        </div>
+                                        
+									        <!-- begin - your content here -->
+									        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+									        </asp:ContentPlaceHolder>
+                                            <!--end - your content here -->
+                                        
+							        </div>
+						        </div><!--  end card  -->
+					        </div> <!-- end col-md-12 -->
+				        </div> <!-- end row -->
+			        </div>
+		        </div>
+
+		        <footer class="footer">
+			        <div class="container-fluid">
+				        <nav class="pull-left">
+					        <ul>
+						        <li>
+							        <a href="http://www.datarama.com.mx">
+								        <asp:Image runat="server" ImageUrl="~/Content/Images/centraba_logo_1.png" Width="145px" Height="30px" />
+							        </a>
+						        </li>								
+					        </ul>
+				        </nav>
+				        <div class="copyright pull-right">&copy; <%: DateTime.Now.Year %>, powered by <a href="http://www.datarama.com.mx">LUNATech</a>
+				        </div>
+			        </div>
+		        </footer>
+	        </div>
+        </div>
+    </form>
+</asp:Content>
